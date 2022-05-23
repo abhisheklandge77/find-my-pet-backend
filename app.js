@@ -260,6 +260,21 @@ router.use('/lostPetMail', async (req, res) => {
             }
         });
 
+        const htmlBody2 = mailBody.getHelpingMail(payload);
+        const mailOptions2 = {
+            from: process.env.FIND_MY_PET_EMAIL, // sender address
+            to: personEmail, // list of receivers
+            subject: `Hey ${personName}, Thanks for helping`, // Subject line
+            html: htmlBody2, // html body
+        };
+        transporter.sendMail(mailOptions2, (err, data) => {
+            if (err) {
+                console.log("Error =>", err)
+            } else {
+                console.log("thanking mail send successfully")
+            }
+        });
+
         // return new user
         res.status(201).send("Send pet lost mail successfully");
     } catch (err) {

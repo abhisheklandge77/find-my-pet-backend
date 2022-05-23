@@ -45,6 +45,19 @@ const mailBody = {
             </div>`
         )
     },
+    getHelpingMail: (payload) => {
+        const { personName, ownerName, petName } = payload;
+        return (
+            `     <div>
+                <h1>Hey ${personName},</h1><br/>
+                <h3>Thanks for helping ${petName}</h3>
+                <h3>${petName}'s owner ${ownerName} can contact you</h3>
+                <h3>GOD BLESS YOU </h3>
+                <h3>Thanks once again </h3><br/>
+                <h3><b>Find My Pet</b></h3>
+            </div>`
+        )
+    },
     placedOrderMail: (payload) => {
         const {orderDetails, name, paymentMethod } = payload;
         const { type, breed, price } = orderDetails;
