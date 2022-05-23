@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     email: String,
     password: String,
     token: String,
-    phone: String,
+    phone: Number,
     address: String,
     userImage: String,
     pets: [PetSchema],

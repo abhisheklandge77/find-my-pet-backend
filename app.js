@@ -79,7 +79,6 @@ router.post('/register', async (req, res) => {
             subject: "Account created successfully", // Subject line
             html: htmlBody, // html body
         };
-        console.log("Mail Options:::", mailOptions);
         transporter.sendMail(mailOptions, (err, data) => {
             if (err) {
                 console.log("Error =>", err)
@@ -335,12 +334,11 @@ router.get('/getUserById', (req, res) => {
 });
 
 
-router.post('/updateUser', auth, (req, res) => {
+router.post('/updateUser', (req, res) => {
+    const { name, email, phone, address, userImage } = req.body;
     User.findByIdAndUpdate(req.body.id,
         {
-            name: req.body.name,
-            roll: req.body.roll,
-            address: req.body.address
+            name, email, phone, address, userImage 
         }, function (err, data) {
             if (err) {
                 console.log(error);
@@ -354,6 +352,22 @@ router.post('/updateUser', auth, (req, res) => {
 router.post('/savePet', function (req, res) {
     User.findByIdAndUpdate(req.body.id, {
         $addToSet: {
+            pets: req.body.pet
+        }
+
+    }, function (err, data) {
+        if (err) {
+            console.log(error);
+        }
+        else {
+            res.send(data);
+        }
+    });
+});
+
+router.post('/deletePet', function (req, res) {
+    User.findByIdAndUpdate(req.body.id, {
+        $pull: {
             pets: req.body.pet
         }
 
