@@ -4,13 +4,13 @@ const bodyParser=require('body-parser');
 const cors = require('cors');
 const backendApi = require('./app');
 
-const {PORT} = process.env;
+const {PORT,  BASE_URL} = process.env;
 const app=express();
 
 app.use(cors());
 
 app.listen(PORT, function() {
-	console.log(`Server is listening at http://localhost:${PORT}`);
+	console.log(`Server is listening at ${BASE_URL}:${PORT}`);
 });
 
 // Parses the text as url encoded data

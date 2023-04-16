@@ -23,7 +23,7 @@ const mailBody = {
     },
     getLostPetMail: (payload) => {
         const { petId, personName, personEmail, personAddress, personPhone, personMessage, ownerName, petName, latitude, longitude } = payload;
-        const locationURL = `http://localhost:3000/pet-map/${petId}$${latitude}&${longitude}`;
+        const locationURL = `https://admirable-torte-e51d6b.netlify.app/pet-map/${petId}$${latitude}&${longitude}`;
         return (
             `     <div>
                 <h1>Hey ${ownerName},</h1><br/>
